@@ -1,0 +1,13 @@
+<html>
+  <body>
+    <h1> This is the edit page. </h1>
+
+    <form action="/postedit/" method = "post">
+      {% csrf_token %}
+      <textarea name="content" cols="60%" rows="10" tabindex="4">{{ post.content }}</textarea>
+      <input type="hidden" name="postid" value="{{ post.id }}" />
+      <input type="submit" value="Edit!" />
+    </form>
+
+  </body>
+</html>

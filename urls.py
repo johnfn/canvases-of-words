@@ -51,6 +51,12 @@ urlpatterns = patterns('',
     #post detail
     url(r'^([0-9]+)/$', 'canvases.posts.views.detail'),
 
+    #edit post
+    url(r'^([0-9]+)/edit/$', 'canvases.posts.views.edit_post'),
+
+    #edit post, POST
+    url(r'^postedit/$', 'canvases.posts.views.edit_post_post'),
+
     #view all posts
 
     #most recent

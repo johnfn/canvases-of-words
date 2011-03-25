@@ -50,6 +50,29 @@ def posts(request):
 class Link:
   pass
 
+@login_required
+def edit_post(request, which):
+  #TODO: Verify correct user
+  post = Post.objects.get(id=which)
+
+  return render_to_response('edit.html', 
+         { 'post' : post
+         , }, 
+         context_instance=RequestContext(request))
+
+#POST request
+@login_required
+def edit_post_post(request):
+  newcontent = request.POST.get('content')
+  id = request.POST.get('postid')
+
+  post = Post.objects.get(id=id)
+
+  post.content = newcontent
+  post.save()
+  return HttpResponseRedirect("/%s" % id)
+
+
 def posts_page(request, which):
   pages = Paginator(Post.objects.all()[::-1], 5)
   num_pages = pages.num_pages

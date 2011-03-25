@@ -25,12 +25,17 @@ def create_user(request):
   return HttpResponse('New user created.')
 
 def user_detail(request, user_string):
+  current_user = (user_string == request.user.username)
+
+  print "current user is:"
+  print ("true" if current_user else false)
   user_obj = User.objects.filter(username=user_string)
   posts = Post.objects.filter(creator=user_obj)[::-1]
 
   return render_to_response('user_detail.html', 
-    { 'username' : user_string
-    , 'posts'    : posts
+    { 'username'        : user_string
+    , 'posts'           : posts
+    , 'is_current_user' : current_user
     })
 
 #TODO potential name conflict with @login_required decorator
