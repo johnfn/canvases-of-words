@@ -62,7 +62,7 @@ urlpatterns = patterns('',
     # === COMMENTS ===
 
     #leave new comment
-    url(r'^writepost/$', 'canvases.posts.views.leave_comment'),
+    url(r'^leavecomment/$', 'canvases.posts.views.leave_comment'),
     
 
 

@@ -5,8 +5,7 @@
     {% for post in posts %}
       <li />{{ post.content }} <br />
         <div class="small">
-          ( <a href = "/{{ post.id }}">Comment</a>
-          | Brought to you by <a href="/users/{{ post.creator }}">{{ post.creator }}</a>.)
+          (<a href = "/{{ post.id }}">Comments ({{ post.num_comments }})</a> | Brought to you by <a href="/users/{{ post.creator }}">{{ post.creator }}</a>.)
         </div>
     {% endfor %}
 
