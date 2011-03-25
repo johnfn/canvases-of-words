@@ -1,0 +1,27 @@
+<html>
+  <body>
+    <h1> Your main page! </h1>
+
+    Groups you belong to: 
+    {% for group in user.group_set.all %}
+      <a href="/group/{{ group.id }}">{{ group.name }}</a> {% if not forloop.last %},{% endif %}
+    {% endfor %}
+
+    <br />
+
+    Recent posts: <br />
+    {% for post in posts %}
+      <li />{{ post.title }} 
+      <a href = "/{{ post.id }}/edit"> Edit </a>
+      <br />
+    {% endfor %}
+
+    <!--
+    Pages: 
+    {% for link in pages %}
+      <a href = "{{ link.link }}">{{ link.number }}</a>
+    {% endfor %}
+    -->
+    
+  </body>
+</html>

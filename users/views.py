@@ -6,6 +6,7 @@ from django.shortcuts import render_to_response
 from django.template import RequestContext
 from django.core.paginator import Paginator
 from django.contrib.auth.models import User
+from django.contrib.auth.decorators import login_required
 from django.contrib.auth import authenticate, models, login, logout
 import datetime
 
@@ -26,6 +27,8 @@ def create_user(request):
 
 def user_detail(request, user_string):
   current_user = (user_string == request.user.username)
+  if current_user:
+    return HttpResponseRedirect('/me/')
 
   user_obj = User.objects.filter(username=user_string)
   posts = Post.objects.filter(creator=user_obj)[::-1]
@@ -35,6 +38,16 @@ def user_detail(request, user_string):
     , 'posts'           : posts
     , 'is_current_user' : current_user
     })
+
+@login_required
+def current_user_detail(request):
+  posts = Post.objects.filter(creator=request.user)[::-1]
+  return render_to_response('current_user_detail.html', 
+    { 'user'  : request.user
+    , 'posts' : posts
+    })
+
+
 
 #TODO potential name conflict with @login_required decorator
 def login_required(request):

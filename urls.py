@@ -37,8 +37,12 @@ urlpatterns = patterns('',
 
     # INFO
 
-    #user page
+    #user page (generic)
+    #TODO this should redirect to the page below...)
     url(r'^users/([a-zA-Z0-9]+)/$', 'canvases.users.views.user_detail'),
+
+    url(r'me/', 'canvases.users.views.current_user_detail'),
+
 
     # === POSTS ===
 

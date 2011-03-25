@@ -40,6 +40,9 @@ def group_change(request, id):
   if group.users.filter(id=request.user.id).count() == 0:
     return HttpResponse("You don't belong to that group.")
 
+  #Get all posts by all members of the group. 
+
+  #I wonder if there is a better way to do this?
   posts = None
   for user in group.users.all():
     if posts == None:
