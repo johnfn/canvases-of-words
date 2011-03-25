@@ -27,8 +27,6 @@ def create_user(request):
 def user_detail(request, user_string):
   current_user = (user_string == request.user.username)
 
-  print "current user is:"
-  print ("true" if current_user else false)
   user_obj = User.objects.filter(username=user_string)
   posts = Post.objects.filter(creator=user_obj)[::-1]
 

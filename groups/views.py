@@ -29,10 +29,25 @@ def group_new_post(request):
 
 @login_required
 def group_change(request, id):
-  group = Group.objects.filter(id=int(id))
+  group = Group.objects.get(id=int(id))
 
   return render_to_response('changegroup.html', 
                            { 'group' : group 
                            ,
                            },
                            context_instance=RequestContext(request))
+
+@login_required
+def group_add_member_post(request, id):
+  new_member = request.POST['name']
+
+  try:
+    user = User.objects.get(username=new_member)
+  except:
+    return HttpResponse("That user doesn't exist!")
+  
+  group = Group.objects.get(id=id)
+
+  group.users.add(user)
+  group.save()
+  return HttpResponseRedirect("/group/%s" % (id))

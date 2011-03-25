@@ -1,4 +1,4 @@
-from posts.models import Post, Response, Group
+from canvases.groups.models import Group
 from django.contrib import admin
 
 admin.site.register(Group)
