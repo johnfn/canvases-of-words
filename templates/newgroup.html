@@ -1,0 +1,14 @@
+<html>
+  <body>
+    <h1> Make a new group. </h1>
+
+    <form action="/postnewgroup/" method = "post">
+      {% csrf_token %}
+      Name of group: <input type="text" name="name" /> <br />
+      Description (optional): <br />
+      <textarea name="description" cols="60%" rows="10" tabindex="4"></textarea>
+      <input type="submit" value="Create!" />
+    </form>
+
+  </body>
+</html>

@@ -1,0 +1,14 @@
+<html>
+  <body>
+    <h1> {{ group.title }} </h1>
+    <i> {{ group.description }} </i> <br />
+    
+    Members: 
+    {% foreach member in group.users %}
+      {{ member.username }}
+    {% endfor %} <br />
+
+
+
+  </body>
+</html>

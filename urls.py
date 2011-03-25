@@ -65,6 +65,19 @@ urlpatterns = patterns('',
     #specific page
     url(r'^posts/([0-9]+)/$', 'canvases.posts.views.posts_page'),
 
+    # === GROUPS ===
+
+    #new group
+    url(r'^newgroup/$', 'canvases.groups.views.group_new'),
+
+    #new group POST
+    url(r'^postnewgroup/$', 'canvases.groups.views.group_new_post'),
+
+
+    #maintain group
+    url(r'^group/([0-9]+)$', 'canvases.groups.views.group_change'),
+
+
     # === COMMENTS ===
 
     #leave new comment
