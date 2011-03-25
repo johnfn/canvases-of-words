@@ -17,9 +17,11 @@ def home(request):
   )
 
 def detail(request, id):
+  #TODO: What happens when you aren't logged in?
   parent = Post.objects.filter(id=id)
   return render_to_response('detail.html', 
        { 'post'     : Post.objects.get(id=id)
+       , 'user'     : request.user
        , 'comments' : Response.objects.filter(parent=parent) 
        }, 
        context_instance=RequestContext(request))
@@ -54,6 +56,9 @@ class Link:
 def edit_post(request, which):
   #TODO: Verify correct user
   post = Post.objects.get(id=which)
+
+  if post.creator != request.user:
+    return HttpResponse("That post isn't yours to edit! :)")
 
   return render_to_response('edit.html', 
          { 'post' : post

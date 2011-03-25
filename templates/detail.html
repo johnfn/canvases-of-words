@@ -1,6 +1,10 @@
 <html>
   <body>
     {{ post.content }} <p />
+    
+    {% ifequal user post.creator %}
+      <a href = "/{{ post.id }}/edit"> Edit </a> <br />
+    {% endifequal %}
 
     Comments: <br />
 

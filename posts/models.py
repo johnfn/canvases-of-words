@@ -2,8 +2,9 @@ from django.db import models
 from django.contrib.auth.models import User
 
 class Post(models.Model):
+  title = models.CharField(max_length=1000)
   creator = models.ForeignKey(User)
-  content = models.CharField(max_length=100000)
+  content = models.TextField()
   date = models.DateTimeField('date published')
 
   def __unicode__(self):
@@ -12,7 +13,7 @@ class Post(models.Model):
 class Response(models.Model):
   creator = models.ForeignKey(User)
   parent = models.ForeignKey(Post)
-  content = models.CharField(max_length=1000)
+  content = models.TextField()
 
   def __unicode__(self):
     return self.content
