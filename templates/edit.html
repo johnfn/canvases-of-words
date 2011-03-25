@@ -2,6 +2,8 @@
   <body>
     <h1> This is the edit page. </h1>
 
+    <h2>{{ post.title }}</h2>
+
     <form action="/postedit/" method = "post">
       {% csrf_token %}
       <textarea name="content" cols="60%" rows="10" tabindex="4">{{ post.content }}</textarea>

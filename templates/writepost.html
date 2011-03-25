@@ -4,6 +4,7 @@
 
     <form action="/postsubmit/" method = "post">
       {% csrf_token %}
+      Title: <input type="text" name="title" /> <br />
       <textarea name="content" cols="60%" rows="10" tabindex="4"></textarea>
       <input type="submit" value="Post!" />
     </form>

@@ -36,8 +36,13 @@ def newpost(request):
   response = ""
   if "content" in request.POST:
     content = request.POST.get("content")
+    title = request.POST.get("title")
 
-    post = Post(content=content, date=datetime.datetime.now(), creator=request.user)
+    post = Post( content = content
+               , title   = title
+               , date    = datetime.datetime.now()
+               , creator = request.user
+               )
     post.save()
 
     response = "Post successful."

@@ -3,7 +3,7 @@
     <h1> View all posts. </h1>
 
     {% for post in posts %}
-      <li />{{ post.content }} <br />
+      <b>{{ post.title }}</b> <br /> {{ post.content }} <br />
         <div class="small">
           (<a href = "/{{ post.id }}">Comments ({{ post.num_comments }})</a> | Brought to you by <a href="/users/{{ post.creator }}">{{ post.creator }}</a>.)
         </div>

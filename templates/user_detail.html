@@ -10,7 +10,7 @@
     <br />
 
     {% for post in posts %}
-      <li />{{ post.content }} 
+      <li />{{ post.title }} 
 
       {% if is_current_user %}
         <a href = "/{{ post.id }}/edit"> Edit </a>
