@@ -2,6 +2,7 @@ from django.template.loader import get_template
 from django.template import Context
 from django.http import HttpResponse, HttpResponseRedirect
 from canvases.groups.models import Group
+from canvases.posts.models import Post
 from django.shortcuts import render_to_response
 from django.template import RequestContext
 from django.core.paginator import Paginator
@@ -24,16 +25,31 @@ def group_new_post(request):
                    , description = description
                    )
  
+  new_group.save() #have to get ID
+
+  new_group.users.add(request.user)
   new_group.save()
+
   return HttpResponseRedirect("/group/%d" % (new_group.id))
 
 @login_required
 def group_change(request, id):
+  #TODO: Check to see if you are a member.
   group = Group.objects.get(id=int(id))
+
+  if group.users.filter(id=request.user.id).count() == 0:
+    return HttpResponse("You don't belong to that group.")
+
+  posts = None
+  for user in group.users.all():
+    if posts == None:
+      posts = Post.objects.filter(creator=user)
+    else:
+      posts = posts | Post.objects.filter(creator=user)
 
   return render_to_response('changegroup.html', 
                            { 'group' : group 
-                           ,
+                           , 'posts' : posts
                            },
                            context_instance=RequestContext(request))
 
