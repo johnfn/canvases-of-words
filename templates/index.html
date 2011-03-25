@@ -1,0 +1,19 @@
+<html>
+  <body>
+    <h1> This is the home page </h1>
+
+    {% if user.is_authenticated %}
+      You are logged in as {{ user.username }}. Want to 
+      <a href = "logout"> log out? </a>
+      <br/>
+    {% else %}
+      You aren't logged in. Why not 
+      <a href = "login"> log in? </a> Or
+      <a href = "register"> register? </a> <br/>
+    {% endif %}
+
+    <a href = "writepost"> Make a post. </a> <br/>
+    <a href = "posts"> View all posts. </a> <br/>
+
+  </body>
+</html>

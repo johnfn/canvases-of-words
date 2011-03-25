@@ -1,0 +1,17 @@
+<html>
+  <body>
+    <h1> View all posts by {{ username }}. </h1>
+
+    {% for post in posts %}
+      <li />{{ post.content }} <br />
+    {% endfor %}
+
+    <!--
+    Pages: 
+    {% for link in pages %}
+      <a href = "{{ link.link }}">{{ link.number }}</a>
+    {% endfor %}
+    -->
+    
+  </body>
+</html>

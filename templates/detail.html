@@ -1,0 +1,12 @@
+<html>
+  <body>
+    {{ post.content }} <p />
+
+    Leave a comment: <br />
+    <form action="/leavecomment/" method = "post">
+      <textarea name="content" cols="60%" rows="10" tabindex="4"></textarea>
+      <input type="submit" value="Comment!" />
+    </form>
+
+  </body>
+</html>
