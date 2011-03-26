@@ -2,10 +2,17 @@
   <body>
     <h1> This is the newpost page. </h1>
 
-    <form action="/postsubmit/" method = "post">
+    <form action="{{ posturl }}" method = "post">
       {% csrf_token %}
       Title: <input type="text" name="title" /> <br />
       <textarea name="content" cols="60%" rows="10" tabindex="4"></textarea>
+      <!--
+      <br />Post to: <br />
+      {% for group in user.group_set.all %}
+        <input type="checkbox" name="{{ group.id }}"/>{{ group.name }}<br />
+      {% endfor %}
+      -->
+
       <input type="submit" value="Post!" />
     </form>
 

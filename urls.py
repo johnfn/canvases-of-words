@@ -78,10 +78,16 @@ urlpatterns = patterns('',
     url(r'^postnewgroup/$', 'canvases.groups.views.group_new_post'),
 
     #maintain group
-    url(r'^group/([0-9]+)$', 'canvases.groups.views.group_change'),
+    url(r'^group/([0-9]+)/$', 'canvases.groups.views.group_change'),
 
     #add member POST
-    url(r'^group/([0-9]+)/addmember$', 'canvases.groups.views.group_add_member_post'),
+    url(r'^group/([0-9]+)/addmember/$', 'canvases.groups.views.group_add_member_post'),
+
+    #add post to group
+    url(r'^group/([0-9]+)/newpost/$', 'canvases.posts.views.new_post_group'),
+
+    #add post to group POST
+    url(r'^group/([0-9]+)/newpostpost/$', 'canvases.posts.views.new_post_group_post'),
 
 
     # === COMMENTS ===

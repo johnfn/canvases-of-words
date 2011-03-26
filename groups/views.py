@@ -32,6 +32,8 @@ def group_new_post(request):
 
   return HttpResponseRedirect("/group/%d" % (new_group.id))
 
+
+#The main group page.
 @login_required
 def group_change(request, id):
   #TODO: Check to see if you are a member.
@@ -49,6 +51,8 @@ def group_change(request, id):
       posts = Post.objects.filter(creator=user)
     else:
       posts = posts | Post.objects.filter(creator=user)
+  
+  posts = posts.filter(group=group)
 
   return render_to_response('changegroup.html', 
                            { 'group' : group 

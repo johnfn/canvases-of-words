@@ -1,11 +1,13 @@
 from django.db import models
 from django.contrib.auth.models import User
+from canvases.groups.models import Group
 
 class Post(models.Model):
   title   = models.CharField(max_length=1000)
   creator = models.ForeignKey(User)
+  group   = models.ForeignKey(Group)
   content = models.TextField()
-  date   = models.DateTimeField('date published')
+  date    = models.DateTimeField('date published')
 
   def __unicode__(self):
     return self.content
@@ -16,4 +18,4 @@ class Response(models.Model):
   content = models.TextField()
 
   def __unicode__(self):
-    return self.content  
+    return self.content

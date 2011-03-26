@@ -2,6 +2,7 @@ from django.template.loader import get_template
 from django.template import Context
 from django.http import HttpResponse, HttpResponseRedirect
 from canvases.posts.models import Post, Response
+from canvases.groups.models import Group
 from django.shortcuts import render_to_response
 from django.template import RequestContext
 from django.core.paginator import Paginator
@@ -28,7 +29,11 @@ def detail(request, id):
 
 @login_required
 def writepost(request):
-  return render_to_response('writepost.html', {'user' : request.user}, context_instance=RequestContext(request))
+  return render_to_response('writepost.html', 
+        { 'user' : request.user
+        , 'posturl' : "/postsubmit/" % (id)
+        }, 
+        context_instance=RequestContext(request))
 
 #put a new post into the database
 @login_required
@@ -50,6 +55,31 @@ def newpost(request):
     response = "I didn't get a post!"
   
   return HttpResponse(response)
+
+@login_required
+def new_post_group(request, id):
+  return render_to_response('writepost.html', 
+        { 'user'    : request.user
+        , 'posturl' : "/group/%s/newpostpost/" % (id)
+        },
+        context_instance=RequestContext(request))
+
+
+@login_required
+def new_post_group_post(request, id):
+  content = request.POST.get("content")
+  title = request.POST.get("title")
+
+  post = Post( content = content
+             , title   = title
+             , date    = datetime.datetime.now()
+             , creator = request.user
+             , group   = Group.objects.get(id=int(id))
+             )
+  post.save()
+
+  return HttpResponseRedirect("/group/%s/" % (id))
+
 
 def posts(request):
   return posts_page(request, -1)
