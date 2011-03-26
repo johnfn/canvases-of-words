@@ -15,29 +15,32 @@ def home(request):
   if request.user.is_authenticated():
     return HttpResponseRedirect('/me/')
   
-  return render_to_response('index.html',
-    { 'posts' : Post.objects.all()
-    , 'user' : request.user
-    },
-    context_instance=RequestContext(request))
+  return render_to_response( 'index.html'
+                           , { 'posts' : Post.objects.all()
+                             , 'user' : request.user
+                             }
+                           , context_instance=RequestContext(request)
+                           )
 
 def detail(request, id):
   #TODO: What happens when you aren't logged in?
   parent = Post.objects.filter(id=id)
-  return render_to_response('detail.html', 
-       { 'post'     : Post.objects.get(id=id)
-       , 'user'     : request.user
-       , 'comments' : Response.objects.filter(parent=parent) 
-       }, 
-       context_instance=RequestContext(request))
+  return render_to_response( 'detail.html'
+                           , { 'post'     : Post.objects.get(id=id)
+                             , 'user'     : request.user
+                             , 'comments' : Response.objects.filter(parent=parent) 
+                             }
+                           , context_instance=RequestContext(request)
+                           )
 
 @login_required
 def writepost(request):
-  return render_to_response('writepost.html', 
-        { 'user' : request.user
-        , 'posturl' : "/postsubmit/" % (id)
-        }, 
-        context_instance=RequestContext(request))
+  return render_to_response( 'writepost.html' 
+                           , { 'user' : request.user
+                             , 'posturl' : "/postsubmit/" % (id)
+                             } 
+                           , context_instance=RequestContext(request)
+                           )
 
 #put a new post into the database
 @login_required

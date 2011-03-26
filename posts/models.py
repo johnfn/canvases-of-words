@@ -8,7 +8,8 @@ class Post(models.Model):
   group   = models.ForeignKey(Group)
   content = models.TextField()
   date    = models.DateTimeField('date published')
-
+  visible = models.BooleanField()
+  
   def __unicode__(self):
     return self.content
 

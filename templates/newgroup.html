@@ -4,9 +4,10 @@
 
     <form action="/postnewgroup/" method = "post">
       {% csrf_token %}
-      Name of group: <input type="text" name="name" /> <br />
-      Description (optional): <br />
-      <textarea name="description" cols="60%" rows="10" tabindex="4"></textarea>
+      Name of group: <input type="text" name="name" /><br/>
+      Description (optional): <br/>
+      <textarea name="description" cols="60%" rows="10" tabindex="4"></textarea><br/>
+      Make public? <input name="visible" type="checkbox" checked> <br/>
       <input type="submit" value="Create!" />
     </form>
 

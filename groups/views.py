@@ -14,27 +14,30 @@ import datetime
 
 @login_required
 def group_new(request):
-  return render_to_response('newgroup.html', 
-                           {},
-                           context_instance=RequestContext(request))
+  return render_to_response('newgroup.html'
+                           , {}
+                           , context_instance=RequestContext(request)
+                           )
 
 def group_view_all(request):
-  return render_to_response('allgroups.html', 
-                           { 'groups' : Group.objects.all()
-                           }
-                           , context_instance=RequestContext(request))
+  return render_to_response('allgroups.html'
+                           , { 'groups' : Group.objects.filter(visible=True)
+                             }
+                           , context_instance=RequestContext(request)
+                           )
 
 @login_required
 def group_new_post(request):
   name = request.POST['name']
   description = request.POST['description']
+  visible = ('visible' in request.POST)
 
   new_group = Group( name        = name
                    , description = description
+                   , visible     = visible
                    )
  
   new_group.save() #have to get ID
-
   new_group.users.add(request.user)
   new_group.save()
 
@@ -62,11 +65,12 @@ def group_change(request, id):
   
   posts = posts.filter(group=group)
 
-  return render_to_response('changegroup.html', 
-                           { 'group' : group 
-                           , 'posts' : posts
-                           },
-                           context_instance=RequestContext(request))
+  return render_to_response('changegroup.html'
+                           , { 'group' : group 
+                             , 'posts' : posts
+                             }
+                           , context_instance=RequestContext(request)
+                           )
 
 @login_required
 def group_add_member_post(request, id):

@@ -17,9 +17,10 @@ def create_user(request):
   if User.objects.filter(username=request.POST.get('username')).count() > 0:
     return HttpResponse("That username is already taken!")
 
-  newuser = User.objects.create_user(request.POST.get('username'), 
-                                     request.POST.get('email')   , 
-                                     request.POST.get('password'))
+  newuser = User.objects.create_user( request.POST.get('username') 
+                                    , request.POST.get('email')    
+                                    , request.POST.get('password')
+                                    )
   newuser.save()
 
   #TODO: Redirect
@@ -33,20 +34,23 @@ def user_detail(request, user_string):
   user_obj = User.objects.filter(username=user_string)
   posts = Post.objects.filter(creator=user_obj)[::-1]
 
-  return render_to_response('user_detail.html', 
-    { 'username'        : user_string
-    , 'posts'           : posts
-    , 'is_current_user' : current_user
-    })
+  return render_to_response( 'user_detail.html'
+                           , { 'username'        : user_string
+                             , 'posts'           : posts
+                             , 'is_current_user' : current_user
+                             }
+                           , context_instance=RequestContext(request)
+                           )
 
 @login_required
 def current_user_detail(request):
   posts = Post.objects.filter(creator=request.user)[::-1]
-  return render_to_response('current_user_detail.html', 
-    { 'user'  : request.user
-    , 'posts' : posts
-    }, 
-    context_instance=RequestContext(request))
+  return render_to_response( 'current_user_detail.html'
+                           , { 'user'  : request.user
+                             , 'posts' : posts
+                             } 
+                           , context_instance=RequestContext(request)
+                           )
 
 
 
