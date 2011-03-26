@@ -14,7 +14,15 @@ import datetime
 
 @login_required
 def group_new(request):
-  return render_to_response('newgroup.html', {}, context_instance=RequestContext(request))
+  return render_to_response('newgroup.html', 
+                           {},
+                           context_instance=RequestContext(request))
+
+def group_view_all(request):
+  return render_to_response('allgroups.html', 
+                           { 'groups' : Group.objects.all()
+                           }
+                           , context_instance=RequestContext(request))
 
 @login_required
 def group_new_post(request):

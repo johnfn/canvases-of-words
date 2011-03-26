@@ -72,8 +72,7 @@ urlpatterns = patterns('',
     # === GROUPS ===
 
     #view all groups
-    url(r'^allgroups/$', 'canvases.groups.views.group_new'),
-
+    url(r'^allgroups/$', 'canvases.groups.views.group_view_all'),
 
     #new group
     url(r'^newgroup/$', 'canvases.groups.views.group_new'),
