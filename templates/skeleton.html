@@ -1,10 +1,16 @@
 <html>
   <head>
-    <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/main.css" />
+    <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }css/main.css" />
 
     <title>{% block title %}Main page.{% endblock %}</title>
   </head>
   <body>
     {% block content %}{% endblock %}
+    <p> &nbsp;
+    <p> &nbsp;
+    <p> &nbsp;
+    <footer> 
+      {% block footer %}Ceci n'est pas une footer.{% endblock %}
+    </footer>
   </body>
 </html>

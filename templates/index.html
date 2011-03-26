@@ -5,14 +5,8 @@
 {% block content %}
   <h1> This is the home page </h1>
 
-  {% if user.is_authenticated %}
-    You are logged in as {{ user.username }}. Want to 
-    <a href = "logout"> log out? </a>
-    <br/>
-  {% else %}
-    You aren't logged in. Why not <a href = "login">log in?</a> Or
-    <a href = "register">register?</a> <br/>
-  {% endif %}
+  You aren't logged in. Why not <a href = "login">log in?</a> Or
+  <a href = "register">register?</a> <br/>
 
   <a href = "newgroup">Make a new group.</a> <br/>
   <a href = "writepost">Make a post.</a> <br/>

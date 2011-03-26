@@ -8,7 +8,7 @@
     <h1> Your main page! </h1>
 
     You are logged in as {{ user.username }}. Want to 
-    <a href = "/logout"> log out? </a>
+    <a href = "/logout">log out?</a>
     <p />
 
 
@@ -18,13 +18,14 @@
     {% endfor %}
 
     <br />
-    <a href = "/newgroup"> Make a new group. </a> <p />
+    <a href = "/newgroup">Make a new group. </a><p>
+    <a href = "/allgroups">View all groups. </a><p>
 
 
     Recent posts: <br />
     {% for post in posts %}
       <li />{{ post.title }} 
-      <a href = "/{{ post.id }}/edit"> Edit </a>
+      <a href = "/{{ post.id }}/edit">Edit </a>
       <br />
     {% endfor %}
 
