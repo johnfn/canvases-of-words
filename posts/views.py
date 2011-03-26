@@ -12,7 +12,7 @@ import datetime
 
 def home(request):
   #TODO: Logout somewhere.
-  if request.user is not None:
+  if request.user.is_authenticated():
     return HttpResponseRedirect('/me/')
   
   return render_to_response('index.html',
