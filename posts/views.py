@@ -18,8 +18,8 @@ def home(request):
   return render_to_response('index.html',
     { 'posts' : Post.objects.all()
     , 'user' : request.user
-    }
-  )
+    },
+    context_instance=RequestContext(request))
 
 def detail(request, id):
   #TODO: What happens when you aren't logged in?

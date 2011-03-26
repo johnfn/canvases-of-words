@@ -45,7 +45,8 @@ def current_user_detail(request):
   return render_to_response('current_user_detail.html', 
     { 'user'  : request.user
     , 'posts' : posts
-    })
+    }, 
+    context_instance=RequestContext(request))
 
 
 
