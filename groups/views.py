@@ -90,6 +90,7 @@ def group_change(request, id):
 
 @login_required
 def group_add_member_post(request, id):
+  print request.POST
   new_member = request.POST['name']
 
   try:
@@ -101,4 +102,11 @@ def group_add_member_post(request, id):
 
   group.users.add(user)
   group.save()
-  return HttpResponseRedirect("/group/%s" % (id))
+  return HttpResponse(request.POST['name'])
+  #return HttpResponseRedirect("/group/%s" % (id))
+
+
+def ajax_test(request):
+  print "ajax got %s" % request.POST
+  return HttpResponse("HEYO")
+

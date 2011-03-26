@@ -86,6 +86,10 @@ urlpatterns = patterns('',
     #add member POST
     url(r'^group/([0-9]+)/addmember/$', 'canvases.groups.views.group_add_member_post'),
 
+    #add member AJAX POST
+    url(r'^addmembertest/$', 'canvases.groups.views.ajax_test'),
+
+
     #add post to group
     url(r'^group/([0-9]+)/newpost/$', 'canvases.posts.views.new_post_group'),
 

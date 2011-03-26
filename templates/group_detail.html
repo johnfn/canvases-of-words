@@ -6,13 +6,28 @@
 
   <script>
     $(function() {
-      console.log("hi"); 
       var autocomplete = {{ all_users|safe }};
 
       $( "#nameinput" ).autocomplete({
         source: autocomplete
       });
+
+      $("#sendrequest").click(function(){
+        $.post("/group/{{ group.id }}/addmember/" 
+              , { id   : {{ group.id }}
+                , name : $("#nameinput").val()
+                }
+              , function(data) {
+                  /* Append name to list. */
+                  data = "<a href='/users/" + data + "'>" + data + "</a>"
+                  $("#newmembers").html(", " + data)
+                }
+              );
+      }); 
+
     });
+
+
   </script>
 
   <h1> {{ group.name }} </h1>
@@ -21,15 +36,17 @@
   Members: 
   {% for member in group.users.all %}
     <a href="/users/{{ member.username }}">{{ member.username }}</a>
-    {% if not forloop.last %},{% endif %}
-  {% endfor %} <br/>
+    {% if not forloop.last %},{% else %}<span id="newmembers"></div>{% endif %}
+  {% endfor %}   <br/>
 
   <p>
+
+
 
   <form action="/group/{{ group.id }}/addmember/" method = "post">
     {% csrf_token %}
     Add member: <input type="text" name="name" id="nameinput" />
-    <input type="submit" value="Add!" />
+    <input type="button" id="sendrequest" value="Add!" />
   </form>
 
   <b>Recent posts:</b> <a href="/group/{{ group.id }}/newpost">(Add new post)</a> <p>
