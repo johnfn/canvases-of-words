@@ -65,7 +65,7 @@ def group_change(request, id):
   
   posts = posts.filter(group=group)
 
-  return render_to_response('changegroup.html'
+  return render_to_response('group_detail.html'
                            , { 'group' : group 
                              , 'posts' : posts
                              }
