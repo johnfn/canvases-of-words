@@ -44,6 +44,19 @@ def group_new_post(request):
   return HttpResponseRedirect("/group/%d" % (new_group.id))
 
 
+#Get a list of all users. Convenient for autocomplete.
+#Once we get a significant amount of users, we might have to change
+#this up a little :P 
+def get_all_users_array():
+  user_list = User.objects.all()
+  array = ""
+  for user in user_list:
+    array += '"' + user.username + '",'
+
+  array = "[" + array + "]"
+
+  return array
+
 #The main group page.
 @login_required
 def group_change(request, id):
@@ -65,9 +78,12 @@ def group_change(request, id):
   
   posts = posts.filter(group=group)
 
+  all_users = get_all_users_array()
+
   return render_to_response('group_detail.html'
-                           , { 'group' : group 
-                             , 'posts' : posts
+                           , { 'group'     : group
+                             , 'posts'     : posts[::-1]
+                             , 'all_users' : all_users
                              }
                            , context_instance=RequestContext(request)
                            )

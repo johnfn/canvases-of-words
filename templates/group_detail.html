@@ -3,6 +3,18 @@
 {% block title %}Home page{% endblock %}
 
 {% block content %}
+
+  <script>
+    $(function() {
+      console.log("hi"); 
+      var autocomplete = {{ all_users|safe }};
+
+      $( "#nameinput" ).autocomplete({
+        source: autocomplete
+      });
+    });
+  </script>
+
   <h1> {{ group.name }} </h1>
   <i> {{ group.description }} </i> <p>
 
@@ -10,13 +22,13 @@
   {% for member in group.users.all %}
     <a href="/users/{{ member.username }}">{{ member.username }}</a>
     {% if not forloop.last %},{% endif %}
-  {% endfor %} <br />
+  {% endfor %} <br/>
 
-  <p />
+  <p>
 
-  <form action="/group/{{ group.id }}/addmember" method = "post">
+  <form action="/group/{{ group.id }}/addmember/" method = "post">
     {% csrf_token %}
-    Add member: <input type="text" name="name" />
+    Add member: <input type="text" name="name" id="nameinput" />
     <input type="submit" value="Add!" />
   </form>
 
