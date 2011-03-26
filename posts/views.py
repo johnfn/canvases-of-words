@@ -11,6 +11,10 @@ from django.contrib.auth.decorators import login_required
 import datetime
 
 def home(request):
+  #TODO: Logout somewhere.
+  if request.user is not None:
+    return HttpResponseRedirect('/me/')
+  
   return render_to_response('index.html',
     { 'posts' : Post.objects.all()
     , 'user' : request.user

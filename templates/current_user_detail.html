@@ -2,12 +2,19 @@
   <body>
     <h1> Your main page! </h1>
 
+    You are logged in as {{ user.username }}. Want to 
+    <a href = "logout"> log out? </a>
+    <p />
+
+
     Groups you belong to: 
     {% for group in user.group_set.all %}
       <a href="/group/{{ group.id }}">{{ group.name }}</a> {% if not forloop.last %},{% endif %}
     {% endfor %}
 
     <br />
+    <a href = "newgroup"> Make a new group. </a> <p />
+
 
     Recent posts: <br />
     {% for post in posts %}
