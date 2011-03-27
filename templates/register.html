@@ -1,20 +1,16 @@
-<html>
-  <body>
-    <h1> Register. </h1>
+{% extends "skeleton.html" %}
+
+{% block content %}
+    <h1>Register</h1>
 
     <form action="/postregister/" method = "post">
       {% csrf_token %}
-      Name: <input type="text" name="username" /> <br />
-      Email*: <input type="text" name="email" /> <br />
-      Password: <input type="password" name="password" /> <br />
-
-      <input type="submit" value="Register!" />
+      <div>Name: <input type="text" name="username"/></div>
+      <div>Email*: <input type="text" name="email"/></div>
+      <div>Password: <input type="password" name="password"/></div>
+      <div><input type="submit" value="Register!"/></div>
     </form>
-
-    <br />
-    <br />
     <div class="subscript">
-      *We will never email you. We don't even know why we ask for your address.
+        *We will never email you. We don't even know why we ask for your address.
     </div>
-  </body>
-</html>
+{% endblock %}

@@ -33,32 +33,32 @@
 
 {% block content %}
 
-  <h1> {{ group.name }} </h1>
-  <i> {{ group.description }} </i> <p>
+	<h1> {{ group.name }} </h1>
+	{% if group.description %}
+		<p><em>{{ group.description }}</em></p>
+	{% endif %}
 
-  Members: 
-  {% for member in group.users.all %}
-    <a href="/users/{{ member.username }}">{{ member.username }}</a>
-    {% if not forloop.last %},{% else %}<span id="newmembers"></div>{% endif %}
-  {% endfor %}   <br/>
-
-  <p>
+	<p>Members: 
+	{% for member in group.users.all %}
+	  <a href="/users/{{ member.username }}">{{ member.username }}</a>{% if not forloop.last %},{% endif %}
+	{% endfor %}
+	</p>
 
 
 
-  <form action="/group/{{ group.id }}/addmember/" method = "post">
-    {% csrf_token %}
-    Add member: <input type="text" name="name" id="nameinput" />
-    <input type="button" id="sendrequest" value="Add!" />
-  </form>
+	<form action="/group/{{ group.id }}/addmember/" method = "post">
+	  {% csrf_token %}
+	  Add member: <input type="text" name="name" id="nameinput" />
+	  <input type="button" id="sendrequest" value="Add!" />
+	</form>
 
-  <b>Recent posts:</b> <a href="/group/{{ group.id }}/newpost">(Add new post)</a> <p>
+	<b>Recent posts:</b> <a href="/group/{{ group.id }}/newpost">(Add new post)</a> <p>
 
-  {% for post in posts %}
-    <b>{{ post.title }}</b><br/>
-    {{ post.content }}<br/>
-    <a href="/{{ post.id }}">Comments</a>
-    <p/>
-  {% endfor %}
+	{% for post in posts %}
+	  <b>{{ post.title }}</b><br/>
+	  {{ post.content }}<br/>
+	  <a href="/{{ post.id }}">Comments</a>
+	  <p/>
+	{% endfor %}
 
 {% endblock %}

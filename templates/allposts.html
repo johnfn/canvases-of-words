@@ -1,6 +1,7 @@
-<html>
-  <body>
-    <h1> View all posts. </h1>
+{% extends "skeleton.html" %}
+
+{% block content %}
+    <h1>View all posts.</h1>
 
     {% for post in posts %}
       <b>{{ post.title }}</b> <br /> {{ post.content }} <br />
@@ -11,7 +12,6 @@
 
     Pages: 
     {% for link in pages %}
-      <a href = "{{ link.link }}">{{ link.number }}</a>
+        <a href="{{ link.link }}">{{ link.number }}</a>
     {% endfor %}
-  </body>
-</html>
+{% endblock %}

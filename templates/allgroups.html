@@ -3,10 +3,15 @@
 {% block title %}Home page{% endblock %}
 
 {% block content %}
-  <h1> View all groups </h1>
+  <h1>View all groups</h1>
 
-    {% for group in groups %}
-      {{ forloop.counter }}. <a href="/group/{{ group.id }}/"><b>{{ group.name }}</b></a> | <i>{{ group.description }}</i><br />
-    {% endfor %}
+  <ol>
+  {% for group in groups %}
+    <li>
+	  <a href="/group/{{ group.id }}/"><b>{{ group.name }}</b></a>{% if group.description %}:
+	  <i>{{ group.description }}</i>{% endif %}
+	</li>
+  {% endfor %}
+  </ol>
 
 {% endblock %}

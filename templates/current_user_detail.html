@@ -1,10 +1,6 @@
-<html>
-  <head>
-    <title>Main page.</title>
+{% extends "skeleton.html" %}
 
-    <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/main.css" />
-  </head>
-  <body>
+{% block content %}
     <h1>Your main page!</h1>
 
     <p>You are logged in as {{ user.username }}. Want to <a href="/logout">log out?</a></p>
@@ -12,7 +8,7 @@
 
     Groups you belong to: 
     {% for group in user.group_set.all %}
-      <a href="/group/{{ group.id }}">{{ group.name }}</a> {% if not forloop.last %},{% endif %}
+      <a href="/group/{{ group.id }}">{{ group.name }}</a>{% if not forloop.last %},{% endif %}
     {% endfor %}
 
     <p><a href="/newgroup">Make a new group.</a></p>
@@ -21,9 +17,10 @@
 
     <h2>Recent posts:</h2>
     {% for post in posts %}
-      <li />{{ post.title }} 
-      <a href = "/{{ post.id }}/edit">Edit </a>
-      <br />
+      <li>
+	    {{ post.title }} 
+        <a href="/{{ post.id }}/edit">Edit</a>
+      </li>
     {% endfor %}
 
     <!--
@@ -32,6 +29,4 @@
       <a href = "{{ link.link }}">{{ link.number }}</a>
     {% endfor %}
     -->
-    
-  </body>
-</html>
+{% endblock %}

@@ -1,14 +1,13 @@
-<html>
-  <body>
-    <h1> This is the newpost page. </h1>
+{% extends "skeleton.html" %}
+
+{% block content %}
+    <h1>This is the newpost page.</h1>
 
     <form action="{{ posturl }}" method = "post">
       {% csrf_token %}
-      Title: <input type="text" name="title" /> <br />
+      <div>Title: <input type="text" name="title"/></div>
       <textarea name="content" cols="60%" rows="10" tabindex="4"></textarea>
 
-      <input type="submit" value="Post!" />
+      <div><input type="submit" value="Post!"/></div>
     </form>
-
-  </body>
-</html>
+{% endblock %}

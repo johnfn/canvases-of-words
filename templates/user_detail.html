@@ -1,22 +1,22 @@
-<html>
-  <body>
-    <h1> Who is this {{ username }} guy, anyway? </h1>
+{% extends "skeleton.html" %}
 
+{% block content %}
+    <h1>Who is this {{ username }} guy, anyway?</h1>
+
+	<p>
     {% if is_current_user %}
       Why, that appears to be you!
     {% else %}
       I dunno either. But here are some of their posts: 
     {% endif %}
-    <br />
+    </p>
 
     {% for post in posts %}
-      <li />{{ post.title }} 
-
+      <li>{{ post.title }} 
       {% if is_current_user %}
-        <a href = "/{{ post.id }}/edit"> Edit </a>
+        <a href="/{{ post.id }}/edit">Edit</a>
       {% endif %}
-
-      <br />
+      </li>
     {% endfor %}
 
     <!--
@@ -25,6 +25,4 @@
       <a href = "{{ link.link }}">{{ link.number }}</a>
     {% endfor %}
     -->
-    
-  </body>
-</html>
+{% endblock %}
