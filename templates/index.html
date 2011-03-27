@@ -5,7 +5,6 @@
 {% block content %}
 	<h1>{{ SITE_NAME }}</h1>
 
-	<p><a href="login">log in</a></p>
 	<form id="signup">
 		<div class="inner">
 			<div><label for="username">Username: </label><input id="username" type="text"/></div>
@@ -13,13 +12,13 @@
 			<div><a class="button" href="/">Sign Up ›</a></div>
 		</div>
 	</form>
-	<h2>Recent posts</h2>
+	<h2>Latest posts</h2>
 	<ul>
 		{% for post in recent_posts %}
 		<li>{{ post.title }}</li>
 		{% endfor %}
 	</ul>
-	<h2>Recent groups</h2>
+	<h2>Latest groups</h2>
 	{% for group in recent_groups %}
 	<li>{{ group.title }}</li>
 	{% endfor %}

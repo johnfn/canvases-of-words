@@ -33,7 +33,27 @@
     <title>{% block title %}{% endblock %}{{ SITE_URL }}</title>
   </head>
   <body>
-	<div id="centercolumn">
+	<div id="nav" class="small">
+		<div class="centercolumn">
+		{% if user.is_authenticated %}
+			<div class="right">
+				Hello, {{ user }}.
+				<a href="/logout/">log off</a>
+			</div>
+		{% else %}
+			<div class="right">
+				<form action="/postlogin/" method="post">
+					{% csrf_token %}
+					<label for="loginuser">Username: </label><input type="text" name="username" id="loginuser"/>
+					<label for="loginpass">Password: </label><input type="password" name="password" id="loginpass"/>
+					<input class="button" type="submit" value="Log in"/>
+				</form>
+			</div>
+		{% endif %}
+			<div class="clear"></div>
+		</div>
+	</div>
+	<div class="centercolumn">
 	    {% block content %}{% endblock %}
 	</div>
   </body>

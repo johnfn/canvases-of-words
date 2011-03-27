@@ -4,7 +4,7 @@
     <h1>{{ post.title }}</h1>
     {{ post.content }}
     
-    {% ifequal user post.creator %}
+    {% if user == post.creator %}
       <a href = "/{{ post.id }}/edit">Edit</a> <br />
     {% endifequal %}
 
