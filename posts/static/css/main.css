@@ -73,15 +73,14 @@ form#signup input:focus {
 }
 
 form#signup a.button {
-    background: #fcff40;
+    background: #a5dfff;
     background: -moz-linear-gradient(top, #a5dfff, #2c6594);
     background: -webkit-linear-gradient(top, #a5dfff, #2c6594);
-    border: 1px solid #abd;
+    border: 1px solid #9ac;
     color: #331;
     font-weight: bold;
     text-shadow: 0 1px 0 #c0e0ff;
     box-shadow: 0 3px 0 #2c595f;
-    -moz-box-shadow: 0 3px 0 #a8a;
     display: block;
     font-size: 1.25em;
     margin-top: .75em;
@@ -96,9 +95,21 @@ form#signup a.button {
 
 form#signup a.button:hover {
     color: #3f3f1f;
-    border-color: #cfd5f0;
+    border-color: #abd;
     text-shadow: 0 1px 0 #eff;
-    background: #fcff40;
+    background: #c5ffff;
     background: -moz-linear-gradient(top, #c5ffff, #2c6594);
     background: -webkit-linear-gradient(top, #c5ffff, #2c6594);
+}
+
+form#signup a.button:active {
+    background: #2c6594;
+    background: -webkit-linear-gradient(top, #105080, #2c6594);
+    background: -webkit-linear-gradient(top, #105080, #2c6594);
+    position: relative;
+    top: 3px;
+    text-shadow: 0 1px 0 #6ca5d4;
+    border-color: #047;
+    color: #000;
+    box-shadow: none;
 }
