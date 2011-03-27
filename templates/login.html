@@ -1,13 +1,13 @@
-<html>
-  <body>
-    <h1> Log in. </h1>
+{% extends "skeleton.html" %}
 
-    <form action="/postlogin/" method = "post">
-      {% csrf_token %}
-      Name: <input type="text" name="username" /> <br />
-      Password: <input type="password" name="password" /> <br />
+{% block content %}
+<h1>{{ SITE_NAME }}</h1>
 
-      <input type="submit" value="Register!" />
-    </form>
-  </body>
-</html>
+<form action="/postlogin/" method = "post">
+	{% csrf_token %}
+	Name: <input type="text" name="username" /> <br />
+	Password: <input type="password" name="password" /> <br />
+
+	<input type="submit" value="Register!" />
+</form>
+{% endblock %}

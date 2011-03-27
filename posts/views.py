@@ -3,7 +3,7 @@ from django.template import Context
 from django.http import HttpResponse, HttpResponseRedirect
 from canvases.posts.models import Post, Response
 from canvases.groups.models import Group
-from django.shortcuts import render_to_response
+from django.shortcuts import render_to_response, get_object_or_404
 from django.template import RequestContext
 from django.core.paginator import Paginator
 from django.contrib.auth.decorators import login_required
@@ -149,7 +149,7 @@ def posts_page(request, which):
 
 @login_required
 def leave_comment(request):
-  post    = Post.objects.get(id=request.POST["postid"])
+  post    = get_object_or_404(Post, id=request.POST["postid"])
   content = request.POST["content"]
   comment = Response(content=content, parent=post, creator=request.user)
 
