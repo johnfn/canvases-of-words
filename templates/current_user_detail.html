@@ -5,11 +5,9 @@
     <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/main.css" />
   </head>
   <body>
-    <h1> Your main page! </h1>
+    <h1>Your main page!</h1>
 
-    You are logged in as {{ user.username }}. Want to 
-    <a href = "/logout">log out?</a>
-    <p />
+    <p>You are logged in as {{ user.username }}. Want to <a href="/logout">log out?</a></p>
 
 
     Groups you belong to: 
@@ -17,12 +15,11 @@
       <a href="/group/{{ group.id }}">{{ group.name }}</a> {% if not forloop.last %},{% endif %}
     {% endfor %}
 
-    <br />
-    <a href = "/newgroup">Make a new group. </a><p>
-    <a href = "/allgroups">View all groups. </a><p>
+    <p><a href="/newgroup">Make a new group.</a></p>
+    <p><a href="/allgroups">View all groups.</a></p>
 
 
-    Recent posts: <br />
+    <h2>Recent posts:</h2>
     {% for post in posts %}
       <li />{{ post.title }} 
       <a href = "/{{ post.id }}/edit">Edit </a>

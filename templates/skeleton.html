@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <html>
   <head>
     <!-- js -->
@@ -35,12 +36,9 @@
     <title>{% block title %}Main page.{% endblock %}</title>
   </head>
   <body>
-    {% block content %}{% endblock %}
-    <p> &nbsp;
-    <p> &nbsp;
-    <p> &nbsp;
-    <footer> 
-      {% block footer %}Ceci n'est pas une footer.{% endblock %}
-    </footer>
+	<div id="centercolumn">
+	    {% block content %}{% endblock %}
+	    {% block footer %}Ceci n'est pas une footer.{% endblock %}
+	</div>
   </body>
 </html>

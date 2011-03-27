@@ -3,12 +3,24 @@
 {% block title %}Home page{% endblock %}
 
 {% block content %}
-  <h1> This is the home page </h1>
+	<h1>Scritelling</h1>
 
-  You aren't logged in. Why not <a href = "login">log in?</a> Or
-  <a href = "register">register?</a> <br/>
-
-  <a href = "newgroup">Make a new group.</a> <br/>
-  <a href = "writepost">Make a post.</a> <br/>
-  <a href = "posts">View all posts.</a> <br/>
+	<p><a href="login">log in</a></p>
+	<form id="signup">
+		<div class="inner">
+			<div><label for="username">Username: </label><input id="username" type="text"/></div>
+			<div><label for="password">Password: </label><input id="password" type="password"/></div>
+			<div><a class="button" href="/">Sign Up ›</a></div>
+		</div>
+	</form>
+	<h2>Recent posts</h2>
+	<ul>
+		{% for post in recent_posts %}
+		<li>{{ post.title }}</li>
+		{% endfor %}
+	</ul>
+	<h2>Recent groups</h2>
+	{% for group in recent_groups %}
+	<li>{{ group.title }}</li>
+	{% endfor %}
 {% endblock %}

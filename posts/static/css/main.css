@@ -1,3 +1,101 @@
+@import url(http://fonts.googleapis.com/css?family=Pacifico);
+
+html, body {
+    padding: 0;
+    margin: 0;
+}
+
+html {
+    overflow-y: scroll;
+}
+
 body {
-  font: 1.1em arial, helvetica, sans-serif;
+  font: 0.8125em "Lucida Sans", "Lucida Grande", Verdana, "Helvetica Neue", sans-serif;
+  color: #333;
+}
+
+h1 {
+    font-weight: normal;
+    /*font-style: italic;*/
+    font-family: Pacifico, "Helvetica Neue", sans-serif;
+    margin: .25em 0;
+    font-size: 3em;
+    margin: 0;
+}
+
+#centercolumn {
+    width: 54em;
+    margin: 0 auto;
+}
+
+form#signup {
+    width: 17.5em;
+    float: right;
+    border-radius: 2em;
+    -webkit-border-radius: 2em;
+    -moz-border-radius: 2em;
+    margin-left: 1em;
+    background: #eee;
+}
+
+form#signup .inner {
+    background: #fff;
+    margin: 1em;
+    padding: 1em;
+    border-radius: 1em;
+    -webkit-border-radius: 1em;
+    -moz-border-radius: 1em;
+}
+
+form#signup label {
+    display: block;
+    font-size: .9em;
+    cursor: pointer;
+}
+
+form#signup input {
+    width: 6.5em;
+    font-size: 2em;
+    font-family: "Helvetica Neue", sans-serif;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+}
+
+form#signup input:hover {
+    border-color: #bbb;
+}
+
+form#signup input:focus {
+    border-color: #aaa;
+    background: #FFF3D9;
+}
+
+form#signup a.button {
+    background: #fcff40;
+    background: -moz-linear-gradient(top, #fcff40, #c2fa3e);
+    background: -webkit-linear-gradient(top, #fcff40, #c2fa3e);
+    border: 1px solid #eee;
+    color: #353;
+    font-weight: bold;
+    text-shadow: 0 1px 0 #fff;
+    display: block;
+    font-size: 1.25em;
+    margin-top: .75em;
+    padding: .5em 0;
+    text-align: center;
+    text-decoration: none;
+    font-family: "Helvetica Neue", sans-serif;
+    border-radius: 4px;
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+}
+
+form#signup a.button:hover {
+    color: #000;
+    border-color: #aaa;
+    background: #c2fa3e;
+    background: -moz-linear-gradient(top, #fcff40, #abf000);
+    background: -webkit-linear-gradient(top, #fcff40, #abf000);
 }
