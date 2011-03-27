@@ -49,13 +49,9 @@ def group_new_post(request):
 #this up a little :P 
 def get_all_users_array():
   user_list = User.objects.all()
-  array = ""
-  for user in user_list:
-    array += '"' + user.username + '",'
-
-  array = "[" + array + "]"
-
-  return array
+  user_list = map(lambda user: '"%s"' % user.username, user_list)
+  user_list = ", ".join(user_list)
+  return "[ %s ]" % user_list
 
 #The main group page.
 @login_required
@@ -66,23 +62,13 @@ def group_change(request, id):
   if group.users.filter(id=request.user.id).count() == 0:
     return HttpResponse("You don't belong to that group.")
 
-  #Get all posts by all members of the group. 
-
-  #I wonder if there is a better way to do this?
-  posts = None
-  for user in group.users.all():
-    if posts == None:
-      posts = Post.objects.filter(creator=user)
-    else:
-      posts = posts | Post.objects.filter(creator=user)
-  
-  posts = posts.filter(group=group)
-
+  #Get all posts by all members of the group.
+  posts = Post.objects.filter(group=group).order_by('-date')
   all_users = get_all_users_array()
 
   return render_to_response('group_detail.html'
                            , { 'group'     : group
-                             , 'posts'     : posts[::-1]
+                             , 'posts'     : posts
                              , 'all_users' : all_users
                              }
                            , context_instance=RequestContext(request)

@@ -2,7 +2,7 @@
 
 {% block title %}Home page{% endblock %}
 
-{% block content %}
+{% block scripts %}
 
   <script>
     $(function() {
@@ -29,6 +29,9 @@
 
 
   </script>
+{% endblock %}
+
+{% block content %}
 
   <h1> {{ group.name }} </h1>
   <i> {{ group.description }} </i> <p>

@@ -4,7 +4,6 @@
     <!-- js -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.5.1/jquery.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.11/jquery-ui.min.js"></script>
-
     <script>
     /* ensure that CSRF token is sent with AJAX requests */
       $('html').ajaxSend(function(event, xhr, settings) {
@@ -29,11 +28,9 @@
         }
       });
     </script>
-
-    <!-- css -->
-    <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/main.css" />
-
-    <title>{% block title %}Main page.{% endblock %}</title>
+	{% block scripts %}{% endblock %}
+    <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/main.css"/>
+    <title>{% block title %}{% endblock %}{{ SITE_URL }}</title>
   </head>
   <body>
 	<div id="centercolumn">
